@@ -7,6 +7,10 @@ O **AnimeVault** é um gerenciador de animes local, desenvolvido para organizar 
 
 <img width="1073" height="744" alt="image" src="https://github.com/user-attachments/assets/63a0dc91-24c1-451b-9098-a09926fffaa4" />
 
+<img width="1074" height="741" alt="image" src="https://github.com/user-attachments/assets/1a4a87d2-2958-40d1-b84c-fd0bffbde766" />
+
+<img width="1074" height="744" alt="image" src="https://github.com/user-attachments/assets/166142b9-c6b6-4a65-98e7-e736376608cd" />
+
 
 ## ✨ Funcionalidades (v1.0)
 
