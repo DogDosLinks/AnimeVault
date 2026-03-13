@@ -35,3 +35,9 @@ Para rodar este projeto no seu sistema (Windows), siga os passos abaixo:
 ### Instalação:
 1.Baixe o executável AnimeBailt 1.0.1
 2.Execute o instalador. 
+
+## 📥 Download
+Você pode baixar a versão mais recente do **AnimeVault** para Windows clicando no link abaixo:
+
+[**Baixar AnimeVault v1.0.0 (setup.exe)**](https://github.com/DogDosLinks/AnimeVault/releases/latest)
+
