@@ -28,11 +28,6 @@ O **AnimeVault** é um gerenciador de animes local, desenvolvido para organizar 
 
 Para rodar este projeto no seu sistema (Windows), siga os passos abaixo:
 
-### Pré-requisitos
+### Instalação:
 1.Baixe o executável AnimeBailt 1.0.1
 2.Execute o instalador. 
-
-### Instalação
-1. Clone este repositório:
-   ```bash
-   git clone [https://github.com/SEU_USUARIO/animevault.git](https://github.com/SEU_USUARIO/animevault.git)
