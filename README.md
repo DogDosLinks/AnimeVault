@@ -36,6 +36,10 @@ Para rodar este projeto no seu sistema (Windows), siga os passos abaixo:
 1.Baixe o executável AnimeBailt 1.0.1
 2.Execute o instalador. 
 
+:::ATENÇÃO:::
+Por não ser um programa com certificado microsoft e também pedir para acessar a pasta do anime para encontrar os episódios onde o usuário mesmo selecionou, pode ser que seu anti-virus ou navegador detecte ele como uma ameaça. Mas não se preocupe, é só dar as permissões para que ele funcione normalmente.
+
+
 ## 📥 Download
 Você pode baixar a versão mais recente do **AnimeVault** para Windows clicando no link abaixo:
 
