@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AnimeVault</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- ===== Topo ===== -->
+    <div class="header">
+        <h1>Anime<span>Vault</span></h1>
+
+        <div class="top-bar">
+            <div class="search-container">
+                <input type="text" id="search-input" placeholder="Busque seu anime...">
+                <button id="search-button">
+                    <i class="icon">🔍</i>
+                </button>
+            </div>
+
+            <button id="add-anime-button" title="Adicionar Novo Anime">
+                <span class="plus-icon">+</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- ===== Grade de Animes ===== -->
+    <div class="anime-grid" id="main-grid"></div>
+
+    <!-- ===== Modal — Adicionar Anime ===== -->
+    <div id="modal-adicionar" class="modal">
+        <div class="modal-content">
+            <h2>Adicionar Novo Anime</h2>
+
+            <label for="input-titulo">Nome do Anime:</label>
+            <div style="position: relative;">
+                <input type="text" id="input-titulo" placeholder="Ex: Shingeki no Kyojin" autocomplete="off">
+                <!-- Dropdown com sugestões da Jikan — aparece enquanto digita -->
+                <div id="jikan-sugestoes" class="jikan-sugestoes"></div>
+            </div>
+
+            <label for="input-capa">Imagem da Capa:</label>
+            <div class="file-group">
+                <input type="text" id="input-capa" readonly placeholder="Nenhum arquivo selecionado">
+                <button id="btn-buscar-capa">Procurar</button>
+            </div>
+
+            <label for="input-pasta">Pasta do Anime:</label>
+            <div class="file-group">
+                <input type="text" id="input-pasta" readonly placeholder="Caminho da pasta">
+                <button id="btn-buscar-pasta">Selecionar</button>
+            </div>
+
+            <label for="input-sinopse">Sinopse:</label>
+            <textarea id="input-sinopse" rows="4" placeholder="Escreva um resumo..."></textarea>
+            <!-- Botão aparece só quando há sinopse em inglês vinda da Jikan -->
+            <button id="btn-traduzir" class="btn-traduzir" style="display:none;">🌐 Traduzir para Português</button>
+            <!-- Tags/gêneros vindos da Jikan — ficam escondidas até selecionar um anime -->
+            <div id="modal-tags" class="tags-container" style="display:none;"></div>
+            <div class="modal-footer">
+                <button id="btn-cancelar">Cancelar</button>
+                <button id="btn-aplicar">Aplicar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== Painel de Detalhes do Anime ===== -->
+    <div id="painel-detalhes" class="painel-overlay">
+        <div class="painel-content">
+
+            <button id="btn-fechar-detalhes" class="btn-fechar">✕</button>
+
+            <div class="painel-topo">
+                <div id="detalhes-capa" class="detalhes-capa">
+                    <span>Sem Capa</span>
+                </div>
+                <div class="detalhes-info" id="detalhes-info">
+                    <h2 id="detalhes-titulo"></h2>
+                    <h3>Sinopse</h3>
+                    <p id="detalhes-sinopse"></p>
+                    <!-- Tags do anime — só aparece se houver gêneros salvos -->
+                    <div id="detalhes-tags" class="tags-container"></div>
+                    <button id="btn-editar" class="btn-editar">✏️ Editar</button>
+                </div>
+            </div>
+
+            <div class="painel-episodios">
+                <div class="painel-episodios-header">
+                    <h3>Episódios</h3>
+                    <button id="btn-atualizar-pasta" title="Re-escanear a pasta para encontrar novos episódios">
+                        ↻ Atualizar Pasta
+                    </button>
+                </div>
+                <div id="lista-episodios">
+                    <p>Nenhum episódio cadastrado ainda.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="./render.js"></script>
+</body>
+</html>

@@ -1,0 +1,1123 @@
+/* Layout do Topo */
+.header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 0;
+    background: #121212;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+/*Botão de adicionar anime novo:*/
+.top-bar {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Espaço entre a busca e o botão */
+    width: 80%;
+    max-width: 600px;
+    justify-content: center;
+}
+
+/* Estilo do Botão Adicionar */
+#add-anime-button {
+    background-color: #ff4757; /* vermelho padrão */
+    color: white;
+    border: none;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%; /* Faz ele ficar perfeitamente redondo */
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s, background-color 0.3s, box-shadow 0.3s;
+    box-shadow: 0 4px 10px rgba(255, 71, 87, 0.2);
+}
+
+#add-anime-button .plus-icon {
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 0;
+}
+
+#add-anime-button:hover {
+    transform: scale(1.1); /* Efeito de crescer levemente */
+    background-color: #ff6b81; /* Um vermelho um pouco mais claro no hover */
+    box-shadow: 0 0 15px rgba(255, 71, 87, 0.4);
+}
+
+#add-anime-button:active {
+    transform: scale(0.95); /* Efeito de clique */
+}
+/*--------Fim dos estilos do botão de adicionar anime*/
+
+/*Cor de fundo da página*/
+body {
+    background-color: #121212; /* Fundo bem escuro */
+    color: #e0e0e0;           /* Texto cinza claro */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 20px;
+}
+
+h1 span { color: #ff4757; } /* Destaque no nome */
+
+/* Container da Barra de Busca */
+.search-container {
+    display: flex;
+    background: #1e1e1e;
+    border: 2px solid #333;
+    border-radius: 25px; /* Deixa arredondado */
+    padding: 5px 15px;
+    width: 60%;
+    max-width: 500px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.search-container:focus-within {
+    border-color: #ff4757;
+    box-shadow: 0 0 10px rgba(255, 71, 87, 0.3);
+}
+
+/* O Input (Campo de Texto) */
+#search-input {
+    background: transparent;
+    border: none;
+    color: #e0e0e0;
+    flex: 1;
+    padding: 10px;
+    font-size: 16px;
+    outline: none;
+}
+
+/* Estilo do Placeholder (Cinza Claro) */
+#search-input::placeholder {
+    color: #666;
+}
+
+/*Aqui está o estilo do card e coisas do animeGrid*/
+.anime-grid {
+    display: grid;
+    /* Isso cria colunas automáticas de no mínimo 200px e no máximo 1 fração do espaço */
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); 
+    gap: 20px;          /* Espaço entre os cards */
+    padding: 20px;
+    width: 100%;
+    box-sizing: border-box; /* Garante que o padding não quebre o layout */
+}
+
+.anime-card {
+    background: #1e1e1e;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    border: 1px solid #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.anime-card p{
+    padding:12px 5px;
+    margin: 0;
+    width: 100%;
+    font-weight: 500;
+    color: #e0e0e0;
+}
+
+.anime-card:hover {
+    transform: scale(1.05);
+    border-color: #ff4757;
+}
+
+
+
+/* O Botão de Pesquisar */
+#search-button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    padding: 0 10px;
+    transition: transform 0.2s;
+}
+
+.capa-container {
+    height: 220px;
+    width: 100%;
+    background-color: #2a2a2a;
+    background-size: cover;   /* Faz a imagem cobrir todo o espaço */
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #444;
+}
+
+#search-button:hover {
+    transform: scale(1.2);
+}
+
+/*Aqui é onde vou cuidar da estética da barra de rolagem*/
+
+/*1- Largura da barra de rolagem:*/
+::-webkit-scrollbar{
+    width: 10px;
+}
+
+/*2- Fundo da cor da barra(a trilha de rolagem)*/
+::-webkit-scrollbar-track{
+    background-color: #3d3d3d;
+}
+
+/*A barrinha que está por dentro da trilha que a gente arrasta:*/
+::-webkit-scrollbar-thumb{
+    background: #ff4757; /*Cinzinha discreto, mudar se quiser*/
+    border-radius: 10px; /*arredondar as bordas da barra*/
+    /*border: 2px solid #121212;*/ /*cria uma margem para parecer flutuante Ficou um pouco estranho coloque se qiser*/
+}
+
+/*Quando passar o mouse, ou arrastar fará isso:*/
+::-webkit-scrollbar-thumb:hover{
+    background: #ff4757;
+}
+
+/*-------------Style da caixa de formulpario da caixa de adicionar anime----------*/
+
+/* Fundo escuro atrás do modal */
+.modal {
+    display: none; /* Inicia escondido */
+    position: fixed;
+    z-index: 1000;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.8);
+    backdrop-filter: blur(5px); /* Efeito de desfoque no fundo */
+}
+
+/* Caixa do formulário */
+.modal-content {
+    background-color: #1e1e1e;
+    margin: 5% auto;
+    padding: 30px;
+    width: 450px;
+    border-radius: 15px;
+    border: 1px solid #ff4757;
+    max-height: 85vh;      /* Nunca ultrapassa 85% da altura da tela */
+    overflow-y: auto;      /* Adiciona scroll quando o conteúdo exceder */
+}
+
+.modal-content label { display: block; margin-top: 15px; color: #aaa; }
+.modal-content input, .modal-content textarea {
+    width: 100%; padding: 10px; margin-top: 5px;
+    background: #2a2a2a; border: 1px solid #333; color: white; border-radius: 5px;
+}
+
+.file-group { display: flex; gap: 10px; margin-top: 5px; }
+.file-group button { background: #333; color: white; border: none; padding: 0 15px; cursor: pointer; border-radius: 5px; }
+
+.modal-footer { display: flex; justify-content: flex-end; gap: 10px; margin-top: 25px; }
+
+#btn-aplicar { background: #ff4757; color: white; border: none; padding: 10px 25px; border-radius: 5px; cursor: pointer; font-weight: bold; }
+#btn-cancelar { background: transparent; color: #aaa; border: none; cursor: pointer; }
+
+/* ---- Menu de contexto (botão direito no card) ---- */
+#menu-contexto {
+    display: none;              /* Começa invisível */
+    position: absolute;         /* Aparece onde o mouse clicou */
+    z-index: 9999;              /* Fica na frente de tudo */
+    background-color: #1e1e1e;
+    border: 1px solid #444;
+    border-radius: 8px;
+    padding: 6px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    min-width: 160px;
+}
+
+#menu-contexto button {
+    display: block;
+    width: 100%;
+    background: transparent;
+    border: none;
+    color: #e0e0e0;
+    padding: 10px 14px;
+    text-align: left;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: background 0.2s;
+}
+
+#menu-contexto button:hover {
+    background-color: #ff4757;  /* Vermelho ao passar o mouse */
+    color: white;
+}
+
+/* ======================================================
+   Painel de Detalhes do Anime
+   ====================================================== */
+
+/* Fundo escuro que cobre a tela inteira */
+.painel-overlay {
+    display: none;           /* Começa escondido */
+    position: fixed;
+    z-index: 2000;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(6px);
+    justify-content: center;
+    align-items: center;
+}
+
+/* Caixa branca/escura do painel em si */
+.painel-content {
+    background-color: #1a1a1a;
+    border: 1px solid #333;
+    border-radius: 16px;
+    width: 85%;
+    max-width: 900px;
+    max-height: 85vh;         /* Não ultrapassa 85% da altura da tela */
+    overflow-y: auto;         /* Rola se o conteúdo for grande */
+    padding: 30px;
+    position: relative;       /* Para o botão fechar se posicionar aqui dentro */
+}
+
+/* Botão X de fechar no canto superior direito */
+.btn-fechar {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: transparent;
+    border: none;
+    color: #aaa;
+    font-size: 20px;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.btn-fechar:hover {
+    color: #ff4757;
+}
+
+/* Parte de cima: capa + info lado a lado */
+.painel-topo {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+/* Capa grande no painel de detalhes */
+.detalhes-capa {
+    width: 220px;
+    min-width: 220px;          /* Não encolhe quando a sinopse for grande */
+    height: 310px;
+    border-radius: 10px;
+    background-color: #2a2a2a;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #555;
+    font-size: 14px;
+    border: 1px solid #333;
+}
+
+/* Coluna de texto à direita da capa */
+.detalhes-info {
+    flex: 1;                   /* Ocupa o espaço restante */
+    display: flex;
+    flex-direction: column;
+}
+
+.detalhes-info h2 {
+    margin: 0 0 15px 0;
+    color: #fff;
+    font-size: 22px;
+}
+
+.detalhes-info h3 {
+    color: #ff4757;
+    margin: 0 0 8px 0;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.detalhes-info p {
+    color: #bbb;
+    line-height: 1.7;
+    margin: 0;
+}
+
+/* Botão de editar no painel de detalhes */
+.btn-editar {
+    margin-top: 16px;            /* Espaço entre as tags e o botão */
+    padding: 7px 16px;
+    background: transparent;
+    border: 1px solid #555;
+    border-radius: 8px;
+    color: #aaa;
+    font-size: 13px;
+    cursor: pointer;
+    align-self: flex-start;
+    transition: border-color 0.2s, color 0.2s;
+}
+
+.btn-editar:hover {
+    border-color: #ff4757;
+    color: #ff4757;
+}
+
+/* Formulário inline de edição (aparece no lugar da sinopse) */
+.edicao-inline {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 8px;
+}
+
+.edicao-inline textarea,
+.edicao-inline input[type="text"] {
+    background: #2a2a2a;
+    border: 1px solid #444;
+    border-radius: 8px;
+    color: #eee;
+    padding: 8px 12px;
+    font-size: 14px;
+    resize: vertical;
+    font-family: inherit;
+    transition: border-color 0.2s;
+}
+
+.edicao-inline textarea:focus,
+.edicao-inline input[type="text"]:focus {
+    outline: none;
+    border-color: #ff4757;
+}
+
+.edicao-inline label {
+    color: #ff4757;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 2px;
+}
+
+/* Linha com os dois botões de salvar/cancelar edição */
+.edicao-acoes {
+    display: flex;
+    gap: 10px;
+    margin-top: 4px;
+}
+
+.btn-salvar-edicao {
+    padding: 7px 18px;
+    background: #ff4757;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 13px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn-salvar-edicao:hover {
+    background: #ff6b81;
+}
+
+.btn-cancelar-edicao {
+    padding: 7px 14px;
+    background: transparent;
+    border: 1px solid #555;
+    border-radius: 8px;
+    color: #aaa;
+    font-size: 13px;
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s;
+}
+
+.btn-cancelar-edicao:hover {
+    border-color: #aaa;
+    color: #eee;
+}
+
+/* Campo de pasta na edição com botão ao lado */
+.edicao-pasta-group {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.edicao-pasta-group input {
+    flex: 1;
+}
+
+.btn-trocar-pasta {
+    padding: 8px 12px;
+    background: #2a2a2a;
+    border: 1px solid #555;
+    border-radius: 8px;
+    color: #aaa;
+    font-size: 13px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: border-color 0.2s, color 0.2s;
+}
+
+.btn-trocar-pasta:hover {
+    border-color: #ff4757;
+    color: #ff4757;
+}
+
+/* Separador entre a parte de cima e os episódios */
+.painel-episodios {
+    border-top: 1px solid #333;
+    padding-top: 20px;
+}
+
+.painel-episodios h3 {
+    color: #ff4757;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 0 0 15px 0;
+}
+
+/* Placeholder quando não há episódios */
+.lista-episodios-vazia p {
+    color: #555;
+    font-style: italic;
+    text-align: center;
+    padding: 20px 0;
+}
+
+/* ======================================================
+   Lista de Episódios no Painel de Detalhes
+   ====================================================== */
+
+/* Cada linha de episódio */
+.episodio-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 12px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.2s;
+    border: 1px solid transparent;
+}
+
+.episodio-item:hover {
+    background-color: #2a2a2a;
+    border-color: #ff4757;
+}
+
+/* Número do episódio — "EP 01" */
+.ep-numero {
+    color: #ff4757;
+    font-size: 12px;
+    font-weight: bold;
+    min-width: 45px;        /* Alinha todos os números */
+    letter-spacing: 1px;
+}
+
+/* Nome do arquivo do episódio */
+.ep-nome {
+    flex: 1;                /* Ocupa o espaço restante */
+    color: #ccc;
+    font-size: 14px;
+    white-space: nowrap;    /* Não quebra linha */
+    overflow: hidden;
+    text-overflow: ellipsis; /* Coloca "..." se o nome for muito longo */
+}
+
+/* Ícone de play que aparece no hover */
+.ep-play {
+    color: #555;
+    font-size: 14px;
+    transition: color 0.2s;
+}
+
+.episodio-item:hover .ep-play {
+    color: #ff4757;
+}
+
+/* ======================================================
+   Checkbox customizado de episódio visto
+   ====================================================== */
+
+/* Caixinha ao lado do episódio */
+.ep-checkbox {
+    width: 20px;
+    min-width: 20px;
+    height: 20px;
+    border-radius: 5px;
+    border: 2px solid #444;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+    color: transparent;         /* Esconde o ✓ quando não marcado */
+    transition: border-color 0.2s, background-color 0.2s, color 0.2s;
+    user-select: none;          /* Não seleciona texto ao clicar */
+}
+
+.ep-checkbox:hover {
+    border-color: #2ed573;      /* Verde ao passar o mouse */
+}
+
+/* Estado: marcado como visto */
+.ep-checkbox.marcado {
+    background-color: #2ed573;  /* Verde preenchido */
+    border-color: #2ed573;
+    color: #121212;             /* ✓ escuro para contrastar com o verde */
+}
+
+/* Linha do episódio marcado fica levemente esmaecida */
+.episodio-item.ep-visto .ep-nome {
+    color: #666;
+    text-decoration: line-through; /* Risco no nome para indicar que já viu */
+}
+
+.episodio-item.ep-visto .ep-numero {
+    color: #2ed573;             /* Número fica verde também */
+}
+
+/* Cabeçalho da lista com contador e botão marcar todos */
+.episodios-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    padding: 0 5px;
+}
+
+.ep-contador {
+    font-size: 12px;
+    color: #555;
+    letter-spacing: 0.5px;
+}
+
+.btn-marcar-todos {
+    background: transparent;
+    border: 1px solid #2ed573;
+    color: #2ed573;
+    padding: 5px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+}
+
+.btn-marcar-todos:hover {
+    background: #2ed573;
+    color: #121212;
+}
+
+/* Quando todos estão marcados, o botão vira "Desmarcar todos" em vermelho */
+.btn-marcar-todos.desmarcado {
+    border-color: #ff4757;
+    color: #ff4757;
+}
+
+.btn-marcar-todos.desmarcado:hover {
+    background: #ff4757;
+    color: white;
+}
+/* ======================================================
+   Drag and Drop — Zonas de arrastar no modal
+   ====================================================== */
+
+.drop-zone {
+    border: 2px dashed #444;
+    border-radius: 10px;
+    padding: 15px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    transition: border-color 0.2s, background-color 0.2s;
+    cursor: default;
+}
+
+/* Conteúdo centralizado dentro da zona */
+.drop-zone-conteudo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+/* Texto de instrução */
+.drop-texto {
+    color: #555;
+    font-size: 13px;
+    text-align: center;
+    line-height: 1.6;
+    pointer-events: none; /* Não interfere no drop */
+}
+
+.drop-texto small {
+    color: #444;
+    font-size: 11px;
+}
+
+/* Preview da imagem de capa */
+.preview-capa {
+    display: none;           /* Escondido até ter uma imagem */
+    width: 100px;
+    height: 140px;
+    border-radius: 8px;
+    background-size: cover;
+    background-position: center;
+    margin-bottom: 8px;
+    border: 1px solid #333;
+}
+
+/* Estado: arquivo sendo arrastado sobre a zona */
+.drop-zone.drag-over {
+    border-color: #ff4757;
+    background-color: rgba(255, 71, 87, 0.05);
+}
+
+/* Estado: drop bem sucedido — pisca verde */
+.drop-zone.drag-sucesso {
+    border-color: #2ed573;
+    background-color: rgba(46, 213, 115, 0.05);
+}
+
+/* Estado: arquivo errado solto na zona — pisca vermelho */
+.drop-zone.drag-erro {
+    border-color: #ff4757;
+    background-color: rgba(255, 71, 87, 0.1);
+}
+
+/* Zona da pasta é um pouco menor que a da capa */
+.drop-zone-pasta .drop-zone-conteudo {
+    margin-bottom: 5px;
+}
+
+/* ======================================================
+   Botão Atualizar Pasta
+   ====================================================== */
+
+.painel-episodios-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.painel-episodios-header h3 {
+    margin: 0;
+}
+
+#btn-atualizar-pasta {
+    background: transparent;
+    border: 1px solid #555;
+    color: #aaa;
+    padding: 5px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s, background 0.2s;
+}
+
+#btn-atualizar-pasta:hover {
+    border-color: #e0e0e0;
+    color: #e0e0e0;
+}
+
+#btn-atualizar-pasta.btn-atualizar-sucesso {
+    border-color: #2ed573;
+    color: #2ed573;
+}
+
+#btn-atualizar-pasta.btn-atualizar-erro {
+    border-color: #ff4757;
+    color: #ff4757;
+}
+
+/* ======================================================
+   Checkbox de episódio visto
+   ====================================================== */
+
+.ep-checkbox {
+    width: 20px;
+    min-width: 20px;
+    height: 20px;
+    border-radius: 5px;
+    border: 2px solid #444;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+    color: transparent;
+    transition: border-color 0.2s, background-color 0.2s, color 0.2s;
+    user-select: none;
+}
+
+.ep-checkbox:hover { border-color: #2ed573; }
+
+.ep-checkbox.marcado {
+    background-color: #2ed573;
+    border-color: #2ed573;
+    color: #121212;
+}
+
+.episodio-item.ep-visto .ep-nome {
+    color: #666;
+    text-decoration: line-through;
+}
+
+.episodio-item.ep-visto .ep-numero { color: #2ed573; }
+
+/* ======================================================
+   Cabeçalho da lista de episódios (contador + marcar todos)
+   ====================================================== */
+
+.episodios-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    padding: 0 5px;
+}
+
+.ep-contador {
+    font-size: 12px;
+    color: #555;
+    letter-spacing: 0.5px;
+}
+
+.btn-marcar-todos {
+    background: transparent;
+    border: 1px solid #2ed573;
+    color: #2ed573;
+    padding: 5px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+}
+
+.btn-marcar-todos:hover {
+    background: #2ed573;
+    color: #121212;
+}
+
+.btn-marcar-todos.desmarcado {
+    border-color: #ff4757;
+    color: #ff4757;
+}
+
+.btn-marcar-todos.desmarcado:hover {
+    background: #ff4757;
+    color: white;
+}
+
+/* ======================================================
+   Lista de episódios
+   ====================================================== */
+
+.episodio-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 12px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.2s;
+    border: 1px solid transparent;
+}
+
+.episodio-item:hover {
+    background-color: #2a2a2a;
+    border-color: #ff4757;
+}
+
+.ep-numero {
+    color: #ff4757;
+    font-size: 12px;
+    font-weight: bold;
+    min-width: 45px;
+    letter-spacing: 1px;
+}
+
+.ep-nome {
+    flex: 1;
+    color: #ccc;
+    font-size: 14px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.ep-play {
+    color: #555;
+    font-size: 14px;
+    transition: color 0.2s;
+}
+
+.episodio-item:hover .ep-play { color: #ff4757; }
+
+.lista-episodios-vazia p {
+    color: #555;
+    font-style: italic;
+    text-align: center;
+    padding: 20px 0;
+}
+
+/* ===== Dropdown de sugestões da Jikan ===== */
+
+/* Caixa do dropdown — aparece abaixo do campo de título */
+.jikan-sugestoes {
+    display: none;                  /* Escondido por padrão */
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: #2a2a2a;
+    border: 1px solid #444;
+    border-radius: 0 0 10px 10px;
+    z-index: 9999;
+    max-height: 320px;
+    overflow-y: auto;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+}
+
+.jikan-sugestoes.visivel {
+    display: block;
+}
+
+/* Mensagem de "buscando..." */
+.jikan-loading {
+    padding: 12px 16px;
+    color: #888;
+    font-size: 13px;
+    font-style: italic;
+}
+
+/* Mensagem de erro ou sem resultados */
+.jikan-vazio {
+    padding: 12px 16px;
+    color: #666;
+    font-size: 13px;
+}
+
+/* Cada item de sugestão */
+.jikan-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 12px;
+    cursor: pointer;
+    border-bottom: 1px solid #333;
+    transition: background 0.15s;
+}
+
+.jikan-item:last-child {
+    border-bottom: none;
+}
+
+.jikan-item:hover {
+    background: #3a3a3a;
+}
+
+/* Miniatura da capa no dropdown */
+.jikan-item-thumb {
+    width: 38px;
+    height: 54px;
+    object-fit: cover;
+    border-radius: 4px;
+    background: #1a1a1a;
+    flex-shrink: 0;
+}
+
+/* Coluna de texto: título + tipo/ano */
+.jikan-item-info {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    overflow: hidden;
+}
+
+.jikan-item-titulo {
+    color: #eee;
+    font-size: 13px;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.jikan-item-meta {
+    color: #888;
+    font-size: 11px;
+}
+
+/* ===== Botão Traduzir Sinopse ===== */
+.btn-traduzir {
+    margin-top: 6px;
+    padding: 6px 14px;
+    background: transparent;
+    border: 1px solid #555;
+    border-radius: 8px;
+    color: #aaa;
+    font-size: 12px;
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s;
+    align-self: flex-start;
+}
+
+.btn-traduzir:hover {
+    border-color: #ff4757;
+    color: #ff4757;
+}
+
+/* Estado "traduzindo..." */
+.btn-traduzir.carregando {
+    color: #666;
+    border-color: #444;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+/* ===== Tags / Gêneros ===== */
+
+/* Linha que envolve todas as pílulas */
+.tags-container {
+    display: flex;
+    flex-wrap: wrap;        /* Quebra linha se tiver muitas tags */
+    gap: 6px;
+    margin-top: 10px;
+}
+
+/* Cada pílula individual */
+.tag {
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    background: rgba(255, 71, 87, 0.15);
+    color: #ff6b81;
+    border: 1px solid rgba(255, 71, 87, 0.35);
+    white-space: nowrap;
+}
+
+/* ===== Barra de progresso no card ===== */
+
+/* Fundo cinza da barra (trilha) */
+.progresso-barra {
+    width: 100%;
+    height: 4px;
+    background: #2a2a2a;
+}
+
+/* Preenchimento colorido proporcional ao progresso */
+.progresso-fill {
+    height: 100%;
+    background: #2ed573;        /* Verde — mesma cor dos checkboxes */
+    transition: width 0.3s ease;
+}
+
+/* Texto pequeno abaixo: "3/12 vistos" */
+.progresso-texto {
+    font-size: 11px;
+    color: #666;
+    padding: 4px 8px 6px;
+    text-align: right;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* ===== Modal de confirmação de exclusão ===== */
+
+#modal-confirmar {
+    display: none;
+    position: fixed;
+    z-index: 5000;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.75);
+    backdrop-filter: blur(4px);
+    justify-content: center;
+    align-items: center;
+}
+
+#modal-confirmar.visivel {
+    display: flex;
+}
+
+.confirmar-caixa {
+    background: #1e1e1e;
+    border: 1px solid #444;
+    border-radius: 14px;
+    padding: 30px;
+    width: 340px;
+    text-align: center;
+}
+
+.confirmar-caixa h3 {
+    color: #fff;
+    margin: 0 0 8px 0;
+    font-size: 17px;
+}
+
+.confirmar-caixa p {
+    color: #888;
+    font-size: 13px;
+    margin: 0 0 24px 0;
+    line-height: 1.5;
+}
+
+/* Nome do anime em destaque dentro da mensagem */
+.confirmar-caixa p span {
+    color: #eee;
+    font-weight: 600;
+}
+
+.confirmar-acoes {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+}
+
+.btn-confirmar-sim {
+    padding: 9px 24px;
+    background: #ff4757;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 13px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn-confirmar-sim:hover {
+    background: #ff6b81;
+}
+
+.btn-confirmar-nao {
+    padding: 9px 20px;
+    background: transparent;
+    border: 1px solid #555;
+    border-radius: 8px;
+    color: #aaa;
+    font-size: 13px;
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s;
+}
+
+.btn-confirmar-nao:hover {
+    border-color: #aaa;
+    color: #eee;
+}

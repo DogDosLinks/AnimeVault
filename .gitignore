@@ -1,0 +1,17 @@
+# Dependências
+node_modules/
+
+# Pasta de distribuição (onde fica o seu .exe final)
+dist/
+
+# Logs de erro do npm
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Arquivos de sistema
+.DS_Store
+Thumbs.db
+
+# Configurações do VS Code
+.vscode/
