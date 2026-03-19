@@ -33,7 +33,7 @@ O **AnimeVault** é um gerenciador de animes local, desenvolvido para organizar 
 Para rodar este projeto no seu sistema (Windows), siga os passos abaixo:
 
 ### Instalação:
-1.Baixe o executável AnimeBailt 1.0.1 
+1.Baixe o executável AnimeVault 1.0.1 
 
 2.Execute o instalador. 
 
