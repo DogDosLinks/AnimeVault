@@ -44,7 +44,7 @@ Para rodar este projeto no seu sistema (Windows), siga os passos abaixo:
 
 
 ## 📥 Download
-Você pode baixar a versão mais recente do **AnimeVault** para Windows clicando no link abaixo:
+Você pode baixar a versão mais recente do **AnimeVault** para Windows ou um AppImage para Linux clicando no link abaixo:
 
 [**Baixar AnimeVault v1.0.0 (setup.exe)**](https://github.com/DogDosLinks/AnimeVault/releases/latest)
 
